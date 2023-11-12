@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "auth": "url(src/assets/bg-2.svg)"
+      }
+    },
+    opacity: {
+      "70": "0.7"
+    }
   },
   plugins: [],
 }
