@@ -1,4 +1,5 @@
 import AccountExistence from "../../components/Auth/AccountExistence";
+import RegistrationForm from "../../components/Auth/RegistrationForm";
 
 export default function RegistrationPage() {
 
@@ -8,34 +9,7 @@ export default function RegistrationPage() {
                 <span className="text-5xl">Welcome to</span>
                 <span className="text-3xl mt-3">Venue App</span>
             </h1>
-            <form
-                action=""
-                className="w-full flex flex-col items-center pt-10 px-5 md:max-w-[800px]"
-            >
-                <div className="w-full flex flex-col md:w-4/5">
-                    <label htmlFor="email" className="font-bold">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        className="w-full h-[45px] border-none rounded-lg bg-[rgba(0,0,0,0.6)] mt-1 px-4"
-                    />
-                </div>
-                <div className="w-full flex flex-col md:w-4/5 mt-5">
-                    <label htmlFor="password" className="font-bold">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        className="w-full h-[45px] border-none rounded-lg bg-[rgba(0,0,0,0.6)] mt-1 px-4"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-4/5 md:w-[350px] h-[45px] bg-[#DB073D] mt-7 mx-auto rounded-lg font-bold
-                    transition-all hover:opacity-70"
-                >
-                    Sign Up
-                </button>
-            </form>
+            <RegistrationForm/>
             <AccountExistence
                 text="Already have an account?"
                 route="/login"

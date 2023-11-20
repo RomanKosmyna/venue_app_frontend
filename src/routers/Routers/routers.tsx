@@ -19,3 +19,18 @@ export const router = createBrowserRouter([
     }
 ],
 );
+
+const handleRedirect = () => {
+    let currentLocation = window.location.href;
+    let state = true;
+
+    do {
+        if (currentLocation.endsWith("/")) {
+            window.location.href = "http://localhost:5173/registration";
+        }
+        state = false;
+    } while
+        (state);
+};
+
+handleRedirect();

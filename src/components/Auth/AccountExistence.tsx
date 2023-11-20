@@ -13,7 +13,7 @@ export default function AccountExistence({ text, route, linkText }: Props) {
             <p className="text-lg">{text}</p>
             <Link
                 to={route}
-                className="mt-2 underline text-[#DB073D] transition-all hover:opacity-70"
+                className="mt-2 underline text-[#DB073D] transition-all md:hover:opacity-70"
             >
                 {linkText}
             </Link>
