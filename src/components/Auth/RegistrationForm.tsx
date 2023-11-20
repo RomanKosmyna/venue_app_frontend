@@ -20,10 +20,17 @@ export default function RegistrationForm() {
             },
             body: JSON.stringify(userData)
         });
+
+        const responseData = await response.json();
         
-        if (response.status === 201)
+        if (responseData.status === 201)
         {
             return navigate("/login");
+        }
+
+        if (responseData.status !== 201)
+        {
+            console.log(responseData.message);
         }
     };
 
