@@ -19,10 +19,10 @@ export default function RegistrationForm() {
         return null;
     }
 
-    const { setIsMessageActive, setMessageText } = context;
+    const { setIsMessageActive, setMessageText, setMessageStatus } = context;
 
     const onSubmit: SubmitHandler<Inputs> = async (userData: User) => {
-        const registrationResult = await handleFormData(userData, setIsMessageActive, setMessageText);
+        const registrationResult = await handleFormData(userData, setIsMessageActive, setMessageText, setMessageStatus);
 
         if (registrationResult) {
             return navigate("/login");

@@ -6,6 +6,8 @@ export type TMessagesContext = {
     setIsMessageActive: (isMessageActive: boolean) => void;
     messageText: string;
     setMessageText: (text: string) => void;
+    status: number | null;
+    setMessageStatus: (status: number) => void;
 };
 
 export const MessagesContext = createContext<TMessagesContext | null>(null);
@@ -18,7 +20,11 @@ export default function MessagesProvider({ children }: ChildrenProps) {
         },
         messageText: "",
         setMessageText: (text: string) => {
-            setMessageState((prevState) => ({ ...prevState, messageText: text}))
+            setMessageState((prevState) => ({ ...prevState, messageText: text }))
+        },
+        status: null,
+        setMessageStatus: (status: number) => {
+            setMessageState((prevState) => ({ ...prevState, status: status }));
         }
     });
 

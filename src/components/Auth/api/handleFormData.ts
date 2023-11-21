@@ -4,8 +4,10 @@ import { User } from "../../../interfaces/user.interface";
 type SetterFunction<T> = (value: T) => void;
 
 export const handleFormData = async (
-    userData: User, setIsMessageActive: SetterFunction<boolean>,
-    setMessageText: SetterFunction<string>
+    userData: User, 
+    setIsMessageActive: SetterFunction<boolean>,
+    setMessageText: SetterFunction<string>,
+    setMessageStatus: SetterFunction<number>
 ) => {
 
     const response = await fetch(urls.auth.signup, {
@@ -18,14 +20,16 @@ export const handleFormData = async (
 
     const responseData = await response.json();
 
-    if (responseData.status === 201) {
+    if (response.status === 201) {
         setIsMessageActive(true);
         setMessageText(responseData.message);
+        setMessageStatus(response.status);
     }
-    if (responseData.status !== 201) {
+    if (response.status !== 201) {
         setIsMessageActive(true);
         setMessageText(responseData.message);
+        setMessageStatus(response.status);
     }
-
+    
     return response.ok;
 }
