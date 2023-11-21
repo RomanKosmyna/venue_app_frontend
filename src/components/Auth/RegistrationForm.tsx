@@ -1,7 +1,9 @@
-import { SubmitHandler, useForm } from "react-hook-form"
-import { SignUpResponse, User } from "../../interfaces";
-import { urls } from "../../api";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form"
+import { User } from "../../interfaces";
+import { MessagesContext } from "../../providers";
+import { handleFormData } from "./api";
 
 type Inputs = {
     email: string;
@@ -11,26 +13,19 @@ type Inputs = {
 export default function RegistrationForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const navigate = useNavigate();
+    const context = useContext(MessagesContext);
+
+    if (context === null) {
+        return null;
+    }
+
+    const { setIsMessageActive, setMessageText } = context;
 
     const onSubmit: SubmitHandler<Inputs> = async (userData: User) => {
-        const response = await fetch(urls.auth.signup, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userData)
-        });
+        const registrationResult = await handleFormData(userData, setIsMessageActive, setMessageText);
 
-        const responseData = await response.json();
-        
-        if (responseData.status === 201)
-        {
+        if (registrationResult) {
             return navigate("/login");
-        }
-
-        if (responseData.status !== 201)
-        {
-            console.log(responseData.message);
         }
     };
 

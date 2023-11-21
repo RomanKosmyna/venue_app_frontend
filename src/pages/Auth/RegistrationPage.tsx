@@ -9,7 +9,7 @@ export default function RegistrationPage() {
                 <span className="text-5xl">Welcome to</span>
                 <span className="text-3xl mt-3">Venue App</span>
             </h1>
-            <RegistrationForm/>
+            <RegistrationForm />
             <AccountExistence
                 text="Already have an account?"
                 route="/login"

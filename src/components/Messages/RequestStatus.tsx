@@ -1,17 +1,34 @@
-import { useContext } from "react";
-import { MessagesContext } from "../../providers";
+import { useContext, useEffect } from "react";
+import { MessagesContext, TMessagesContext } from "../../providers";
 
-type Props = {
-    messageText: string;
-    requestStatus: string;
-};
+export default function RequestStatus() {
+    const context = useContext<TMessagesContext | null>(MessagesContext);
 
-export default function RequestStatus({ messageText, requestStatus }: Props) {
-    const context = useContext(MessagesContext);
-    console.log(context);
+    if (context === null) {
+        return null;
+    }
+    
+    const { isMessageActive, setIsMessageActive, messageText } = context;
+
+    useEffect(() => {
+        if (isMessageActive) {
+            setTimeout(() => {
+                setIsMessageActive(false);
+            }, 3000);
+        }
+    }, [isMessageActive]);
+
     return (
-        <div className="w-[250px] h-[40px] absolute z-10 right-0 bottom-0 bg-slate-500">
-            <p>{messageText}</p>
-        </div>
+        <>
+            {
+                isMessageActive ? (
+                    <div className="w-[250px] h-[40px] absolute z-10 right-5 bottom-2 bg-slate-500">
+                        <p>{messageText}</p>
+                    </div>
+                )
+                    :
+                    null
+            }
+        </>
     )
 }
