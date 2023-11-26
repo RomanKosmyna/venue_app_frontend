@@ -1,5 +1,5 @@
-import AccountExistence from "../../components/Auth/AccountExistence";
-import RegistrationForm from "../../components/Auth/RegistrationForm";
+import AccountExistence from "../../components/Auth/components/AccountExistence";
+import RegistrationForm from "../../components/Auth/components/RegistrationForm";
 
 export default function RegistrationPage() {
 
@@ -9,6 +9,7 @@ export default function RegistrationPage() {
                 <span className="text-5xl">Welcome to</span>
                 <span className="text-3xl mt-3">Venue App</span>
             </h1>
+            <h2 className="font-medium text-3xl mt-10">Sign Up</h2>
             <RegistrationForm />
             <AccountExistence
                 text="Already have an account?"

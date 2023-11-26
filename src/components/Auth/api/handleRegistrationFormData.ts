@@ -1,10 +1,10 @@
 import { urls } from "../../../api";
 import { User } from "../../../interfaces/user.interface";
+import { SetterFunction } from "../types/auth.types";
+import { contextResponseSetter } from "./contextResponseSetter";
 
-type SetterFunction<T> = (value: T) => void;
-
-export const handleFormData = async (
-    userData: User, 
+export const handleRegistrationFormData = async (
+    userData: User,
     setIsMessageActive: SetterFunction<boolean>,
     setMessageText: SetterFunction<string>,
     setMessageStatus: SetterFunction<number>
@@ -20,16 +20,7 @@ export const handleFormData = async (
 
     const responseData = await response.json();
 
-    if (response.status === 201) {
-        setIsMessageActive(true);
-        setMessageText(responseData.message);
-        setMessageStatus(response.status);
-    }
-    if (response.status !== 201) {
-        setIsMessageActive(true);
-        setMessageText(responseData.message);
-        setMessageStatus(response.status);
-    }
-    
+    contextResponseSetter({ response, responseData, setIsMessageActive, setMessageText, setMessageStatus });
+
     return response.ok;
 }

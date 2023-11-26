@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form"
-import { User } from "../../interfaces";
-import { MessagesContext } from "../../providers";
-import { handleFormData } from "./api";
+import { User } from "../../../interfaces";
+import { MessagesContext } from "../../../providers";
+import { handleRegistrationFormData } from "../api";
 
 type Inputs = {
     email: string;
@@ -14,7 +14,7 @@ export default function RegistrationForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const navigate = useNavigate();
     const context = useContext(MessagesContext);
-
+    
     if (context === null) {
         return null;
     }
@@ -22,7 +22,7 @@ export default function RegistrationForm() {
     const { setIsMessageActive, setMessageText, setMessageStatus } = context;
 
     const onSubmit: SubmitHandler<Inputs> = async (userData: User) => {
-        const registrationResult = await handleFormData(userData, setIsMessageActive, setMessageText, setMessageStatus);
+        const registrationResult = await handleRegistrationFormData(userData, setIsMessageActive, setMessageText, setMessageStatus);
 
         if (registrationResult) {
             return navigate("/login");
