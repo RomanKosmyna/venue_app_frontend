@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { handleLoginFormData } from "../api";
 import { MessagesContext } from "../../../providers";
+import { useCookies } from "react-cookie";
 
 type Inputs = {
     email: string;
@@ -10,8 +11,9 @@ type Inputs = {
 
 export default function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+    const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
     const context = useContext(MessagesContext);
-    
+
     if (context === null) {
         return null;
     }

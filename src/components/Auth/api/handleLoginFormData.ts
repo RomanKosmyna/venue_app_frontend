@@ -1,3 +1,4 @@
+import { useCookies } from "react-cookie";
 import { urls } from "../../../api";
 import { User } from "../../../interfaces/user.interface";
 import { SetterFunction } from "../types/auth.types";
@@ -21,8 +22,4 @@ export const handleLoginFormData = async (
     const responseData = await response.json();
 
     contextResponseSetter({ response, responseData, setIsMessageActive, setMessageText, setMessageStatus });
-
-    return response.ok;
-
-    console.log(responseData);
 };
