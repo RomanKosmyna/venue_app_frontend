@@ -1,4 +1,3 @@
-import { useCookies } from "react-cookie";
 import { urls } from "../../../api";
 import { User } from "../../../interfaces/user.interface";
 import { SetterFunction } from "../types/auth.types";
