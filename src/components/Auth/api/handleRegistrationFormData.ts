@@ -20,7 +20,7 @@ export const handleRegistrationFormData = async (
 
     const responseData = await response.json();
 
-    contextResponseSetter({ response, responseData, setIsMessageActive, setMessageText, setMessageStatus });
+    // contextResponseSetter({ response, responseData, setIsMessageActive, setMessageText, setMessageStatus });
 
     return response.ok;
 }
